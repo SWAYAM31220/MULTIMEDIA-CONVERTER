@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Converter Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-exchange-alt"></i>
+            <span>File Converter Hub</span>
+        </div>
+        <div class="api-status" id="apiStatus">
+            <i class="fas fa-circle"></i>
+            <span>Checking API...</span>
+        </div>
+        <div class="env-switcher">
+            <label for="envToggle">Production API</label>
+            <label class="toggle-switch">
+                <input type="checkbox" id="envToggle">
+                <span class="toggle-slider"></span>
+            </label>
+        </div>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+            <i class="fas fa-sun light-icon"></i>
+            <i class="fas fa-moon dark-icon"></i>
+        </button>
+    </nav>
+
+    <main class="container">
+        <div class="upload-card" id="dropZone">
+            <div class="upload-content">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h2>Upload Your Files</h2>
+                <p>Drag & drop files here or click to browse</p>
+                <input type="file" id="fileInput" multiple class="file-input" accept="image/*,video/*,audio/*,.pdf" />
+                <button class="upload-btn">
+                    <i class="fas fa-folder-open"></i>
+                    Choose Files
+                </button>
+            </div>
+            <div class="upload-progress hidden">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p class="progress-text">Uploading... 0%</p>
+            </div>
+        </div>
+
+        <div class="files-preview hidden" id="filesContainer">
+            <h3>Selected Files</h3>
+            <div class="files-grid">
+                <!-- Files will be listed here -->
+            </div>
+        </div>
+
+        <div class="conversion-panel hidden">
+            <div class="conversion-options">
+                <div class="option-group">
+                    <label for="conversionType">Conversion Type</label>
+                    <select id="conversionType" class="styled-select">
+                        <option value="">Select type...</option>
+                        <option value="compress">Compress Files</option>
+                        <option value="image">Convert Images</option>
+                        <option value="pdf">Convert to PDF</option>
+                        <option value="audio">Convert Audio</option>
+                        <option value="video">Convert Video</option>
+                    </select>
+                </div>
+                <div class="option-group quality-slider hidden">
+                    <label for="quality">Quality</label>
+                    <input type="range" id="quality" min="1" max="100" value="80" class="styled-slider">
+                    <span class="quality-value">80%</span>
+                </div>
+                <div class="option-group compression-level hidden">
+                    <label for="compressionLevel">Compression Level</label>
+                    <select id="compressionLevel" class="styled-select">
+                        <option value="low">Low (Faster)</option>
+                        <option value="medium" selected>Medium (Balanced)</option>
+                        <option value="high">High (Smaller Size)</option>
+                    </select>
+                </div>
+                <div class="option-group format-options hidden">
+                    <label for="outputFormat">Output Format</label>
+                    <select id="outputFormat" class="styled-select">
+                        <!-- Options will be dynamically populated based on conversion type -->
+                    </select>
+                </div>
+            </div>
+            <button id="convertBtn" class="convert-btn" disabled>
+                <i class="fas fa-cog"></i>
+                <span>Convert Files</span>
+            </button>
+        </div>
+
+        <div class="preview-panel hidden">
+            <h3>Preview</h3>
+            <div class="preview-content">
+                <!-- Preview content will be inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <div class="success-overlay hidden">
+        <div class="success-modal">
+            <i class="fas fa-check-circle"></i>
+            <h3>Conversion Complete!</h3>
+            <p>Your files are ready to download</p>
+            <button class="download-btn">
+                <i class="fas fa-download"></i>
+                Download Files
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Load configuration first -->
+    <script src="js/config.js"></script>
+    <script src="js/darkMode.js"></script>
+    <script src="js/fileUpload.js"></script>
+    <script src="js/converter.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
